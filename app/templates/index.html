@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if contactos != [] %}
+	<br>
+	<div class=" container-fluid w-75 mt-5 ">
+		<a href="{{(url_for('contact'))}}" class=""><i class="fas fa-user-plus"> Nuevo contacto</i></a>
+		<div class=" row mt-2">
+			<div class=" col-md-12 ">
+				<table class=" table table-hover table-striped ">
+					<thead class=" thead-dark text-center">
+						<tr>
+						  <th class="titulo">Actualizar/Borrar</th>
+						  <th class="titulo">Nombre</th>
+						  <th class="titulo">Teléfono</th>
+						  <th class="titulo">Correo</th>
+						  <th class="titulo">Añadido el</th>
+					  </tr>
+				  	<tbody>
+					{% for contacto in contactos %}
+						<tr class="text-center">
+							<td>
+								<form action="{{url_for('edit_contact', id = contacto.id)}}" method="POST">
+									<button type="submit" class="btn btn-warning btn-sm "><i class="fas fa-edit"></i></button>
+								</form>
+								<form action="{{ url_for('delete_contact', id = contacto.id) }}" method="POST">
+									<button type="submit" class="btn btn-warning btn-sm mt-2"><i class="fas fa-trash-alt"></i></button>
+								</form>
+							</td>
+							<td>{{contacto.nombre}}</td>
+							<td>{{contacto.telefono}}</td>
+							<td>{{contacto.email}}</td>
+							<td>{{contacto.timestamp.strftime('%d de %B %Y a las %H:%M:%S')}}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	{% else %}
+    <br>
+    <div class="container-fluid w-75 mt-5">
+        <h1>Ningún contacto por el momento</h1>
+		<a href="{{(url_for('contact'))}}" class=""><i class="fas fa-user-plus"> Nuevo contacto</i></a>	
+    </div>
+	{% endif %}
+{% endblock %}

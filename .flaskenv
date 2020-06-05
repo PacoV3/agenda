@@ -1,0 +1,2 @@
+FLASK_APP=agenda.py
+FLASK_DEBUG=1
