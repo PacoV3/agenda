@@ -4,7 +4,7 @@ import locale
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Idioma "es-ES" (código para el español de España)
-locale.setlocale(locale.LC_ALL, 'es-MX')
+# locale.setlocale(locale.LC_ALL, 'es-MX')
 
 class Config(object):
     SECRET_KEY = os.environ.get("SECRET_KEY") or "DASJE#$FGQP)5644F"
